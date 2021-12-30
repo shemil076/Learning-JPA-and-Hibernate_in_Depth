@@ -3,13 +3,11 @@ package com.in28minutes.jpa.hibernate.demo.entity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@NamedQuery(name="query_get_all_courses", query="Select c from Course c")
 public class Course {
 
     @Id

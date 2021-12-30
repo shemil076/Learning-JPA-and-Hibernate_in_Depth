@@ -31,7 +31,7 @@ class JPQLTest {
 
     @Test
     void jpqlBasic() {
-       Query query =  em.createQuery("Select c from Course c");
+       Query query =  em.createNamedQuery("query_get_all_courses");
        List resultList = query.getResultList();
        logger.info("Select c from Course c -> {}", resultList);
 
@@ -39,7 +39,7 @@ class JPQLTest {
 
     @Test
     void jpqlTyped() {
-        TypedQuery<Course> query =  em.createQuery("Select c from Course c", Course.class);
+        TypedQuery<Course> query =  em.createNamedQuery("query_get_all_courses", Course.class);
         List <Course>resultList = query.getResultList();
         logger.info("Select c from Course c -> {}", resultList);
 
