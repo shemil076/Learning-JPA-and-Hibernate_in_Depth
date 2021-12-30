@@ -29,6 +29,6 @@ public class DemoApplication implements CommandLineRunner {
 //
 //		repository.save(new Course(10001L,"java in 100 steps"));
 
-		repository.playWithEntityManager();
+//		repository.playWithEntityManager();
 	}
 }
