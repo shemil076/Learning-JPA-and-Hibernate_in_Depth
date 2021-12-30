@@ -30,4 +30,11 @@ public class CourseRepository {
         }
         return course;
     }
+
+
+    public void playWithEntityManager(){
+        Course course= new Course("Web Service in 100 steps");
+        em.persist(course);
+        course.setName("Web Service in 100 steps");
+    }
 }

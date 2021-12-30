@@ -23,11 +23,12 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Logger.info("Course -> {}", repository.findById(10001L));
+//		Logger.info("Course -> {}", repository.findById(10001L));
 
 //		repository.save(new Course("Microservice in 100 steps"));
 //
 //		repository.save(new Course(10001L,"java in 100 steps"));
 
+		repository.playWithEntityManager();
 	}
 }
