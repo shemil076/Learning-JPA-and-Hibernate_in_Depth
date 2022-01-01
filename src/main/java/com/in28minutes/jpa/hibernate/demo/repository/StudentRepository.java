@@ -41,5 +41,16 @@ public class StudentRepository {
         student.setPassport(passport);
         em.persist(student);
     }
+
+
+    public void toUnderstandPersistenceContext(){
+        Student student = em.find(Student.class, 20001L);
+
+        Passport passport = student.getPassport();
+
+        passport.setNumber("E1234567");
+
+        student.setName("Ranga - updated");
+    }
 }
 

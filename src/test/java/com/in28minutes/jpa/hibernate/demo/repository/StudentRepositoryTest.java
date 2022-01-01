@@ -37,4 +37,9 @@ class StudentRepositoryTest {
         logger.info("Student -> {}", student);
         logger.info("Passport -> {}", student.getPassport());
     }
+
+    @Test
+    public void test(){
+        repository.toUnderstandPersistenceContext();
+    }
 }
