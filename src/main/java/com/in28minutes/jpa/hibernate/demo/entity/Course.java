@@ -29,6 +29,9 @@ public class Course {
     @CreationTimestamp
     private LocalDateTime createdDate;
 
+    @ManyToMany
+    private List<Student> students = new ArrayList<Student>();
+
     public List<Review> getReviews() {
         return reviews;
     }
@@ -39,6 +42,14 @@ public class Course {
 
     public void removeReviews(Review review) {
         this.reviews.remove(review);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudents(Student students) {
+        this.students.add(students);
     }
 
     public Course(String name) {

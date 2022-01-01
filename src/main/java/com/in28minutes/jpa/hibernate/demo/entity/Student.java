@@ -5,6 +5,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {  //owning side of the relationship
@@ -20,6 +22,9 @@ public class Student {  //owning side of the relationship
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
 
+    @ManyToMany
+    private List<Course> courses = new ArrayList<Course>();
+
     public Passport getPassport() {
         return passport;
     }
@@ -28,10 +33,16 @@ public class Student {  //owning side of the relationship
         this.passport = passport;
     }
 
-
-
     public Student(String name) {
         this.name = name;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void addCourses(Course courses) {
+        this.courses.add(courses);
     }
 
     public Student(Long id, String name) {
