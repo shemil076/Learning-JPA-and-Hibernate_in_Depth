@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -47,26 +48,43 @@ public class CourseRepository {
 
     }
 
-    public void addReviews(){
-        // get the course 10003
-        Course course= findById(10003L);
-         logger.info("Course Review-> {}", course.getReviews());
+//    public void addReviews(){
+//        // get the course 10003
+//        Course course= findById(10003L);
+//         logger.info("Course Review-> {}", course.getReviews());
+//
+//         // add 2 reviews
+//        Review review1= new Review("5", "Great hands on stuff");
+//        Review review2= new Review("5", "hatsoff");
+//
+//        // setting the relationship
+//        course.addReviews(review1);
+//        review1.setCourse(course);
+//
+//        // setting the relationship
+//        course.addReviews(review2);
+//        review2.setCourse(course);
+//
+//        // save it to the database
+//        em.persist(review1);
+//        em.persist(review2);
+//
+//    }
 
-         // add 2 reviews
-        Review review1= new Review("5", "Great hands on stuff");
-        Review review2= new Review("5", "hatsoff");
+    public void addReviews(Long courseId, List<Review> reviews){
+        // get the course course
+        Course course= findById(courseId);
+        logger.info("Course Review-> {}", course.getReviews());
 
-        // setting the relationship
-        course.addReviews(review1);
-        review1.setCourse(course);
+        // add 2 reviews
+        for(Review review : reviews){
+            // setting the relationship
+            course.addReviews(review);
+            review.setCourse(course);
 
-        // setting the relationship
-        course.addReviews(review2);
-        review2.setCourse(course);
-
-        // save it to the database
-        em.persist(review1);
-        em.persist(review2);
+            // save it to the database
+            em.persist(review);
+        }
 
     }
 

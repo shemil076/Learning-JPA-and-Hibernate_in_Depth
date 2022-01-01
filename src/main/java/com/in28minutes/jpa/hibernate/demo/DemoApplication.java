@@ -1,6 +1,7 @@
 package com.in28minutes.jpa.hibernate.demo;
 
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
+import com.in28minutes.jpa.hibernate.demo.entity.Review;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
 import com.in28minutes.jpa.hibernate.demo.repository.CourseRepository;
 import com.in28minutes.jpa.hibernate.demo.repository.StudentRepository;
@@ -10,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -28,6 +32,8 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+
 //		Logger.info("Course -> {}", repository.findById(10001L));
 
 //		repository.save(new Course("Microservice in 100 steps"));
@@ -37,7 +43,12 @@ public class DemoApplication implements CommandLineRunner {
 //		repository.playWithEntityManager();
 
 //		StudentRepository.saveStudentWithPassport();
-		courseRepository.addReviews();
+
+
+		List<Review> reviews = new ArrayList<Review>();
+		reviews.add(new Review("5", "Great hands on stuff"));
+		reviews.add(new Review("5", "hatsoff"));
+		courseRepository.addReviews(10003L,reviews);
 
 	}
 }
