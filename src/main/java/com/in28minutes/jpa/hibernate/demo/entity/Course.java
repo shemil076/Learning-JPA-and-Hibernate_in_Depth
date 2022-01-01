@@ -29,7 +29,7 @@ public class Course {
     @CreationTimestamp
     private LocalDateTime createdDate;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "courses")
     private List<Student> students = new ArrayList<Student>();
 
     public List<Review> getReviews() {
