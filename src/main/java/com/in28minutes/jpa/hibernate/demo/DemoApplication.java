@@ -45,10 +45,13 @@ public class DemoApplication implements CommandLineRunner {
 //		StudentRepository.saveStudentWithPassport();
 
 
-		List<Review> reviews = new ArrayList<Review>();
-		reviews.add(new Review("5", "Great hands on stuff"));
-		reviews.add(new Review("5", "hatsoff"));
-		courseRepository.addReviews(10003L,reviews);
+//		List<Review> reviews = new ArrayList<Review>();
+//		reviews.add(new Review("5", "Great hands on stuff"));
+//		reviews.add(new Review("5", "hatsoff"));
+//		courseRepository.addReviews(10003L,reviews);
+
+
+		StudentRepository.insertStudentAndCourse(new Student("Jack"), new Course("Microservices in 100 steps"));
 
 	}
 }

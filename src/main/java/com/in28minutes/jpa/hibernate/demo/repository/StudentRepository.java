@@ -1,5 +1,6 @@
 package com.in28minutes.jpa.hibernate.demo.repository;
 
+import com.in28minutes.jpa.hibernate.demo.entity.Course;
 import com.in28minutes.jpa.hibernate.demo.entity.Passport;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,30 @@ public class StudentRepository {
         passport.setNumber("E1234567");
 
         student.setName("Ranga - updated");
+    }
+
+
+
+//    public void insertStudentAndCourse() {
+//        Student student = new Student("Jack");
+//        Course course = new Course("Microservices in 100 steps");
+//        em.persist(student);
+//        em.persist(course);
+//        student.addCourses(course);
+//        course.addStudents(student);
+//
+//        em.persist(student);
+//    }
+
+    public void insertStudentAndCourse(Student student, Course course) {
+//        Student student = new Student("Jack");
+//        Course course = new Course("Microservices in 100 steps");
+        student.addCourses(course);
+        course.addStudents(student);
+
+        em.persist(student);
+        em.persist(course);
+
     }
 }
 
