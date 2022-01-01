@@ -20,7 +20,7 @@ public class Course {
     private String name;
 
 
-    @OneToMany (mappedBy="course") // One course has many reviews
+    @OneToMany (mappedBy="course") // One course has many reviews (Default Lazy fetching)
     private List<Review> reviews = new ArrayList<Review>();
 
     @UpdateTimestamp

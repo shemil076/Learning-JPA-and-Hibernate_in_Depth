@@ -15,7 +15,7 @@ public class Review {
         return rating;
     }
 
-    @ManyToOne
+    @ManyToOne      // Always Eager fetching
     private Course course;
 
     public void setRating(String rating) {
