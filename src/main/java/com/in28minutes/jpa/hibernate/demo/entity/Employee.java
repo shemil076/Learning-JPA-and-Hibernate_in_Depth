@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // default strategy
-@DiscriminatorColumn(name = "Employee_Type")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // default strategy
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@DiscriminatorColumn(name = "Employee_Type")
 public abstract class Employee {
 
     @Id
