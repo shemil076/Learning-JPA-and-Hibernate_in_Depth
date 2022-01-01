@@ -2,6 +2,7 @@ package com.in28minutes.jpa.hibernate.demo.repository;
 
 import com.in28minutes.jpa.hibernate.demo.DemoApplication;
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
+import com.in28minutes.jpa.hibernate.demo.entity.Passport;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +38,15 @@ class StudentRepositoryTest {
         logger.info("Student -> {}", student);
         logger.info("Passport -> {}", student.getPassport());
     }
+
+    @Test
+    @Transactional
+    void retrievePassportAndAssociatedStudent() {
+        Passport passport = em.find(Passport.class, 40001L);
+        logger.info("Student -> {}", passport);
+        logger.info("Passport -> {}", passport.getStudent());
+    }
+
 
     @Test
     public void test(){

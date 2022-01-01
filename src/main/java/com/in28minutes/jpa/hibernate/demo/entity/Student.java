@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Student {
+public class Student {  //owning side of the relationship
 
     @Id
     @GeneratedValue

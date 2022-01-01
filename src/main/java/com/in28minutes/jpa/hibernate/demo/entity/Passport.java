@@ -3,7 +3,7 @@ package com.in28minutes.jpa.hibernate.demo.entity;
 import javax.persistence.*;
 
 @Entity
-public class Passport {
+public class Passport {     // not the owning side of the relationship
 
     @Id
     @GeneratedValue
