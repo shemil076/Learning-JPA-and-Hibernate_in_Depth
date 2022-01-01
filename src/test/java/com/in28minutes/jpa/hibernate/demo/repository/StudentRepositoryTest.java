@@ -13,6 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -30,6 +31,7 @@ class StudentRepositoryTest {
     EntityManager em;
 
     @Test
+    @Transactional
     void retrieveStudentAndPassport() {
         Student student = em.find(Student.class, 20001L);
         logger.info("Student -> {}", student);
