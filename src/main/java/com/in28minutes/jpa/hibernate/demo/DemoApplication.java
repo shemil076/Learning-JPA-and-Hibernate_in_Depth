@@ -1,7 +1,9 @@
 package com.in28minutes.jpa.hibernate.demo;
 
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
+import com.in28minutes.jpa.hibernate.demo.entity.Student;
 import com.in28minutes.jpa.hibernate.demo.repository.CourseRepository;
+import com.in28minutes.jpa.hibernate.demo.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,10 @@ public class DemoApplication implements CommandLineRunner {
 	private Logger Logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	CourseRepository repository;
+	StudentRepository StudentRepository;
+
+	@Autowired
+	CourseRepository courseRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -30,5 +35,7 @@ public class DemoApplication implements CommandLineRunner {
 //		repository.save(new Course(10001L,"java in 100 steps"));
 
 //		repository.playWithEntityManager();
+
+		StudentRepository.saveStudentWithPassport();
 	}
 }
