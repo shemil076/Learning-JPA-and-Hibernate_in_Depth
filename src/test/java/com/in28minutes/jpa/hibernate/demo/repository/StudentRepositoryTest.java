@@ -40,6 +40,12 @@ class StudentRepositoryTest {
     }
 
     @Test
+    public void test(){
+        repository.toUnderstandPersistenceContext();
+    }
+
+
+    @Test
     @Transactional
     void retrievePassportAndAssociatedStudent() {
         Passport passport = em.find(Passport.class, 40001L);
@@ -49,7 +55,18 @@ class StudentRepositoryTest {
 
 
     @Test
-    public void test(){
-        repository.toUnderstandPersistenceContext();
+    @Transactional
+    void retrieveStudentAndCourse() {
+      Student student = em.find(Student.class, 20001L);
+      logger.info("Student -> {}", student);
+      logger.info("Course -> {}", student.getCourses());
+    }
+
+    @Test
+    @Transactional
+    void retrieveCourseAndStudents() {
+        Course course = em.find(Course.class, 10001L);
+        logger.info("Course -> {}", course);
+        logger.info("Student -> {}", course.getStudents());
     }
 }
