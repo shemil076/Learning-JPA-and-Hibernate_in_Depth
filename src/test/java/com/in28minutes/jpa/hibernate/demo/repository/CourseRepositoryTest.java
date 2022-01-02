@@ -35,6 +35,22 @@ class CourseRepositoryTest {
        assertEquals("JPA in 50 steps", repository.findById(10001L).getName());
     }
 
+
+    @Test
+    @Transactional
+    void findById_firstLevelCachingDemo() {
+        Course course = repository.findById(10001L);
+        logger.info("First Course Retrieved {}", course);
+
+        Course course1 = repository.findById(10001L);
+        logger.info("First Course Retrieved - again {}", course1);
+
+
+        assertEquals("JPA in 50 steps", course.getName());
+        assertEquals("JPA in 50 steps", course1.getName());
+
+    }
+
     @Test
     @DirtiesContext
     void deleteById() {
