@@ -93,4 +93,38 @@ class CriteriaTest {
         logger.info("Typed query -> {}", resultList);
     }
 
+    @Test
+    void criteriaWithoutStudents() {
+        // "Select c From Course c where c.student is empty "
+
+        // 1. Use Criteria Builder to create a Criteria Query returning the
+        // expected result object
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+
+        // 2. Define roots for tables which are involved in the query
+
+        Root<Course> courseRoot = cq.from(Course.class);// root of the query
+
+        // 3. Define Predicates etc using Criteria Builder
+
+        Predicate empty = cb.isEmpty(courseRoot.get("students"));
+
+
+        // 4. Add Predicates etc to the Criteria Query
+
+        cq.where(empty);
+
+        // 5. Build the TypedQuery using the entity manager and criteria query
+
+
+        TypedQuery query =  em.createQuery(cq.select(courseRoot));
+
+        List<Course> resultList = query.getResultList();
+
+        logger.info("Typed query -> {}", resultList);
+    }
+
 }
