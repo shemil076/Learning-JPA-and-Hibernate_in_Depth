@@ -87,4 +87,43 @@ class JPQLTest {
         logger.info("Results {}",resultList);
     }
 
+    @Test
+    public void testJoin(){ //normal join
+        Query query = em.createQuery("select c,s from Course  c JOIN c.students s");
+        List<Object[]> resultList = query.getResultList();
+
+        logger.info("Size of result list -> {}", resultList.size());
+
+        for (Object[] result : resultList){
+            logger.info("Course -> {} Student -> {}", result[0], result[1]);
+        }
+
+    }
+
+    @Test
+    public void testLeftJoin(){ //left join
+        Query query = em.createQuery("select c,s from Course  c Left JOIN c.students s");
+        List<Object[]> resultList = query.getResultList();
+
+        logger.info("Size of result list -> {}", resultList.size());
+
+        for (Object[] result : resultList){
+            logger.info("Course -> {} Student -> {}", result[0], result[1]);
+        }
+
+    }
+
+
+    @Test
+    public void testCrossJoin(){ //cross join
+        Query query = em.createQuery("select c,s from Course  c , Student s");
+        List<Object[]> resultList = query.getResultList();
+
+        logger.info("Size of result list -> {}", resultList.size());
+
+        for (Object[] result : resultList){
+            logger.info("Course -> {} Student -> {}", result[0], result[1]);
+        }
+
+    }
 }
