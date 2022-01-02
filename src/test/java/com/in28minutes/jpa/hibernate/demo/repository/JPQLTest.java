@@ -2,6 +2,7 @@ package com.in28minutes.jpa.hibernate.demo.repository;
 
 import com.in28minutes.jpa.hibernate.demo.DemoApplication;
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
+import com.in28minutes.jpa.hibernate.demo.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -76,5 +77,14 @@ class JPQLTest {
 //        logger.info("Results {}",resultList);
 //    }
 
+    @Test
+    public void jpqlStudentsWherePassportPatternIs1234() {
+        TypedQuery<Student> query =
+                em.createQuery("select  s from Student s where s.passport.number like '%1234%' ", Student.class);
+
+        List<Student> resultList = query.getResultList();
+
+        logger.info("Results {}",resultList);
+    }
 
 }
