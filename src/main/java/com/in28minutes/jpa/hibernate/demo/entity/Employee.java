@@ -10,7 +10,9 @@ import java.util.List;
 
 @Entity
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // default strategy
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
+
 //@DiscriminatorColumn(name = "Employee_Type")
 public abstract class Employee {
 
