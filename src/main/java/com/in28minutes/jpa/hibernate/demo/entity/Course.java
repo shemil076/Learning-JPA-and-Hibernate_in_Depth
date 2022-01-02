@@ -2,7 +2,9 @@ package com.in28minutes.jpa.hibernate.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +15,8 @@ import java.util.List;
 @NamedQuery(name="query_get_all_courses", query="Select c from Course c")
 
 @Cacheable
+@SQLDelete(sql = "update course set is_deleted=true where id=?")
+@Where(clause ="is_deleted=false")
 public class Course {
 
     @Id
@@ -37,6 +41,20 @@ public class Course {
     @JsonIgnore
     private List<Student> students = new ArrayList<Student>();
 
+
+    private boolean isDeleted;
+
+    public Course(String name) {
+        this.name = name;
+    }
+
+    public Course(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Course(){}
+
     public List<Review> getReviews() {
         return reviews;
     }
@@ -56,17 +74,6 @@ public class Course {
     public void addStudents(Student students) {
         this.students.add(students);
     }
-
-    public Course(String name) {
-        this.name = name;
-    }
-
-    public Course(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Course(){}
 
     public String getName() {
         return name;
