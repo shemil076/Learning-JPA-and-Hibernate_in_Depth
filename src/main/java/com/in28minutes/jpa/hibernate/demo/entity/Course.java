@@ -11,6 +11,8 @@ import java.util.List;
 
 @Entity
 @NamedQuery(name="query_get_all_courses", query="Select c from Course c")
+
+@Cacheable
 public class Course {
 
     @Id
@@ -18,6 +20,7 @@ public class Course {
     private Long id;
 
 
+    @Column(nullable= false)
     private String name;
 
 
