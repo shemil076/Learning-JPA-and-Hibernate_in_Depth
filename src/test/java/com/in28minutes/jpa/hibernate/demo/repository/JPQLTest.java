@@ -45,14 +45,13 @@ class JPQLTest {
 
     }
 
-//    @Test
-//    public void jpql_where() {
-//        TypedQuery<Course> query =
-//                em.createQuery("Select  c  From Course c where name like '%100 Steps'", Course.class);
-//
-//        List<Course> resultList = query.getResultList();
-//
-//        logger.info("Select  c  From Course c where name like '%100 Steps'-> {}",resultList);
-//        //[Course[Web Services in 100 Steps], Course[Spring Boot in 100 Steps]]
-//    }
+    @Test
+    public void jpqlCoursesWithoutStudents() {
+        TypedQuery<Course> query =
+                em.createQuery("select  c from Course c where c.students is empty", Course.class);
+
+        List<Course> resultList = query.getResultList();
+
+        logger.info("Results {}",resultList);
+    }
 }

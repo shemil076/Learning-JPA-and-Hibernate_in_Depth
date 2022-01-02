@@ -10,11 +10,10 @@ import java.util.List;
 
 
 @MappedSuperclass
-//@Entity
+//@Entity   // cannot use @Entity because @MappedSupperClass
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // default strategy
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//@Inheritance(strategy = InheritanceType.JOINED)
-
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)  // use when performance is concerned
+//@Inheritance(strategy = InheritanceType.JOINED)           // use when data integrity is concerned
 //@DiscriminatorColumn(name = "Employee_Type")
 public abstract class Employee {
 
