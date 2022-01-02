@@ -93,4 +93,9 @@ class CourseSpringDataRepositoryTest {
         logger.info(" Third  page {}", thirdPage.getContent());
 
     }
+
+    @Test
+    public void findByName(String name){
+        logger.info("Find By Name -> {}", repository.findByName(name));
+    }
 }
