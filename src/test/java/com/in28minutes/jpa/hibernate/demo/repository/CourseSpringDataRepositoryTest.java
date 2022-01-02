@@ -9,6 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -56,6 +60,37 @@ class CourseSpringDataRepositoryTest {
 
         logger.info("{}", repository.findAll());
         logger.info("{}",repository.count());
+
+    }
+
+    @Test
+    public void sort() {
+//        Course course = new Course("Microservices in 100 steps");
+//        repository.save(course);
+//
+//        course.setName("Microservices in 100 steps - updated");
+//        repository.save(course);
+
+//        Sort sort = new Sort(Sort.Direction.ASC, "name"); // default sort method is ASC
+//        logger.info("Sorted Courses->{}", repository.findAll(sort));
+        logger.info("{}",repository.count());
+
+    }
+
+
+    @Test
+    public void pagination(){
+        PageRequest pageRequest =  PageRequest.of(0,3);
+        Page<Course> firstPage = repository.findAll(pageRequest);
+        logger.info(" first page {}", firstPage.getContent());
+
+        Pageable secondPageable = firstPage.nextPageable();
+        Page<Course> secondPage = repository.findAll(secondPageable);
+        logger.info(" Second page {}", secondPage.getContent());
+
+        Pageable thirdPageable = secondPage.nextPageable();
+        Page<Course> thirdPage = repository.findAll(thirdPageable);
+        logger.info(" Third  page {}", thirdPage.getContent());
 
     }
 }
