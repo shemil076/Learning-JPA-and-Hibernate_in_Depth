@@ -8,10 +8,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+
+@MappedSuperclass
+//@Entity
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // default strategy
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Inheritance(strategy = InheritanceType.JOINED)
+//@Inheritance(strategy = InheritanceType.JOINED)
 
 //@DiscriminatorColumn(name = "Employee_Type")
 public abstract class Employee {
