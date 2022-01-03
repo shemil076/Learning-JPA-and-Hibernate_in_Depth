@@ -5,6 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,6 +20,9 @@ import java.util.List;
 @SQLDelete(sql = "update course set is_deleted=true where id=?")
 @Where(clause ="is_deleted=false")
 public class Course {
+
+    private static Logger logger = LoggerFactory.getLogger(Course.class);
+
 
     @Id
     @GeneratedValue
@@ -43,6 +48,13 @@ public class Course {
 
 
     private boolean isDeleted;
+
+
+    @PreRemove
+    private void preRemove(){
+        logger.info("Setting isDeleted to True");
+        this.isDeleted = true;
+    }
 
     public Course(String name) {
         this.name = name;
