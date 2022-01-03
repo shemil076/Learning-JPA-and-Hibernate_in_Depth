@@ -1,6 +1,7 @@
 package com.in28minutes.jpa.hibernate.demo.repository;
 
 import com.in28minutes.jpa.hibernate.demo.DemoApplication;
+import com.in28minutes.jpa.hibernate.demo.entity.Address;
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
 import com.in28minutes.jpa.hibernate.demo.entity.Passport;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
@@ -71,6 +72,16 @@ class StudentRepositoryTest {
     }
 
 
+    @Test
+    @Transactional
+    void setAddressDetails() {
+        Student student = em.find(Student.class, 20001L);
+        student.setAddress(new Address("N0 1","Street","New York"));
+        em.flush();
+        logger.info("Student -> {}", student);
+        logger.info("Passport -> {}", student.getPassport());
+        logger.info("Address -> {}", student.getAddress());
 
+    }
 
 }

@@ -28,16 +28,31 @@ public class Student {  //owning side of the relationship
             inverseJoinColumns = @JoinColumn(name ="COURSE_ID"))
     private List<Course> courses = new ArrayList<Course>();
 
+
+    @Embedded
+    private Address address;
+
+
+    public Student(){}
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public Passport getPassport() {
         return passport;
     }
 
     public void setPassport(Passport passport) {
         this.passport = passport;
-    }
-
-    public Student(String name) {
-        this.name = name;
     }
 
     public List<Course> getCourses() {
@@ -53,7 +68,7 @@ public class Student {  //owning side of the relationship
         this.name = name;
     }
 
-    public Student(){}
+
 
     public String getName() {
         return name;
@@ -67,11 +82,15 @@ public class Student {  //owning side of the relationship
         return id;
     }
 
+
     @Override
     public String toString() {
-        return String.format("Student[%s]",name);
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", passport=" + passport +
+                ", courses=" + courses +
+                ", address=" + address +
+                '}';
     }
-
-
-
 }
